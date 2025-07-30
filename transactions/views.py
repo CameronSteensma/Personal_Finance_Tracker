@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from .models import Transactions
+from .forms import TransactionForm
 
 def transaction_list(request):
     transactions = Transactions.objects.all().order_by('-date')
@@ -15,3 +16,13 @@ def transaction_list(request):
         'total_expense': total_expense,
         'balance': balance,
     })
+    
+def add_transaction(request):
+    if request.method == 'POST':
+        form = TransactionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('transaction_list')
+    else:
+        form = TransactionForm()
+    return render(request, 'transactions/add_transaction.html', {'form': form})
