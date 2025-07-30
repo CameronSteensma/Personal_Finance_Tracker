@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
 from .models import Transaction
 from .forms import TransactionForm
+from .charts import generate_monthly_spending_chart
 
 def transaction_list(request):
     transactions = Transaction.objects.all().order_by('-date')
@@ -44,3 +45,12 @@ def delete_transaction(request, pk):
         transaction.delete()
         return redirect('transaction_list')
     return render(request, 'transactions/delete_transaction.html', {'transaction': transaction})
+
+def reports_view(request):
+    transactions = Transaction.objects.all()
+    generate_monthly_spending_chart(transactions)
+    return render(request, 'transactions/reports.html')
+
+
+    
+
