@@ -1,0 +1,6 @@
+[
+  { "model": "transactions.category", "pk": 1, "fields": { "name": "Food" } },
+  { "model": "transactions.category", "pk": 2, "fields": { "name": "Rent" } },
+  { "model": "transactions.category", "pk": 3, "fields": { "name": "Salary" } },
+  { "model": "transactions.category", "pk": 4, "fields": { "name": "Entertainment" } }
+]
