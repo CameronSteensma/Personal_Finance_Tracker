@@ -9,7 +9,8 @@ urlpatterns = [
     path('edit/<int:pk>/', views.edit_transaction, name='edit_transaction'),
     path('delete/<int:pk>/', views.delete_transaction, name='delete_transaction'),
     path('reports/', reports_view, name='reports'),
-    path('admin/', views.admin_view, name='admin'),
+    path('dashboard/', views.admin_view, name='admin_view'),
+
 
     # Authentication routes (these views must exist in views.py)
     path('accounts/', views.accounts_view, name='accounts'),
