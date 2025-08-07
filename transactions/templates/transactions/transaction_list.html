@@ -27,7 +27,10 @@
                         <a class="nav-link" href="{% url 'accounts' %}">My Account</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit" class="nav-link btn btn-link">Logout</button>
+                        </form>
                     </li>
                     {% endif %}
                 </ul>

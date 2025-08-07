@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 def login_view(request):
     if request.method == 'POST':
@@ -87,6 +88,7 @@ def reports_view(request):
     generate_monthly_spending_chart(transactions)
     return render(request, 'transactions/reports.html')
 
+@staff_member_required
 def admin_view(request):
     return render(request, 'transactions/admin_view.html')
 
