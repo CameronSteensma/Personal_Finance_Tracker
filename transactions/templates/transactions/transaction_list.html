@@ -24,6 +24,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'add_transaction' %}">Add Transaction</a>
                     </li>
+                    
+                    {% if not user.is_staff %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'reports' %}">Reports</a>
                     </li>
@@ -31,6 +33,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'accounts' %}">My Account</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <form action="{% url 'logout' %}" method="post">
                             {% csrf_token %}
