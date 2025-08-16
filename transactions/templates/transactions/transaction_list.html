@@ -91,21 +91,26 @@
                     <li class="nav-item d-flex align-items-center ms-3">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="darkModeToggle">
-                            <label class="form-check-label" for="darkModeToggle"
-                            >Dark Mode</label>
+                            <label class="form-check-label" for="darkModeToggle" style="margin-right: 10px;">Dark Mode</label>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'reports' %}">Reports</a>
+                        <a class="nav-link" href="{% url 'reports' %}">
+                            <i class="bi bi-bar-chart-line me-1"></i>Reports
+                        </a>
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'accounts' %}">My Account</a>
+                        <a class="nav-link" href="{% url 'accounts' %}">
+                            <i class="bi bi-person me-1"></i>My Account
+                        </a>
                     </li>
                     <li class="nav-item">
                         <form action="{% url 'logout' %}" method="post">
                             {% csrf_token %}
-                            <button type="submit" class="nav-link btn btn-link">Logout</button>
+                            <button type="submit" class="nav-link btn btn-link">Logout
+                                <i class="bi bi-box-arrow-right"></i>
+                            </button>
                         </form>
                     </li>
                     {% endif %}
