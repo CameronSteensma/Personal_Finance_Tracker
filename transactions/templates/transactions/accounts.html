@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>My Account</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -29,15 +29,15 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <main class="container" role="main">
         <h1>Welcome, {{ user.username }}!</h1>
         <p>Email: {{ user.email }}</p>
         <p>Member since: {{ user.date_joined|date:"F j, Y" }}</p>
 
-        <div class="actions">
-            <a href="{% url 'transaction_list' %}">💸 View My Transactions (Home)</a><br>
-            <a href="{% url 'logout' %}">🚪 Logout</a>
+        <div class="actions" aria-label="Account actions">
+            <a href="{% url 'transaction_list' %}"><span aria-hidden="true">💸</span> View My Transactions (Home)</a><br>
+            <a href="{% url 'logout' %}"><span aria-hidden="true">🚪</span> Logout</a>
         </div>
-    </div>
+    </main>
 </body>
 </html>

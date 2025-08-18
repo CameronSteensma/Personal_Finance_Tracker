@@ -53,24 +53,34 @@
         .back-button a:hover {
             background: #2980b9;
         }
+
+        .back-button a:focus {
+            outline: 3px solid #2980b9;
+            outline-offset: 2px;
+        }
     </style>
     <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
-    <header>
+    <header role="banner">
         <h2>Finance Tracker</h2>
     </header>
     <div class="container">
+        <main>
         <h1>Monthly Spending by Category</h1>
         <p style="text-align:center; color: #666;">
             A breakdown of your expenses by category for each month.
         </p>
         <div class="chart-container">
-            <img src="{% static 'charts/monthly_spending_chart.png' %}" alt="Monthly Spending Chart" class="img-fluid">
+            <img src="{% static 'charts/monthly_spending_chart.png' %}" alt="Bar Chart Showing Monthly Spending by Category" class="img-fluid">
         </div>
         <div class="back-button">
             <a href="/">Back to Home</a>
         </div>
+        </main>
     </div>
+    <footer role="contentinfo">
+        <p class="text-center text-muted">© 2025 Finance Tracker</p>
+    </footer>
 </body>
 </html>
