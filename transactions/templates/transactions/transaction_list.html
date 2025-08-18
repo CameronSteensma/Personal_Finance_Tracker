@@ -69,20 +69,22 @@
 
                 table.classList.toggle("darkMode");
                 table.classList.toggle("lightMode");
+
+                darkModeToggle.setAttribute("aria-pressed", document.body.classList.contains("darkMode"));
             });
         });
     </script>
 </head>
 <body class="container mt-4">
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg mb-4 rounded fixed-top" id="navbar">
+    <nav class="navbar navbar-expand-lg mb-4 rounded fixed-top" id="navbar" role="navigation" aria-label="Main Navigation">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="{% url 'transaction_list' %}">
                 <img src="{% static 'favicon.ico' %}" alt="Logo" width="30" height="30" class="me-2">
                 Finance Tracker
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-pressed="false" aria-label="Toggle navigation menu">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -94,7 +96,7 @@
                     {% endif %}
                     <li class="nav-item d-flex align-items-center ms-3">
                         <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="darkModeToggle">
+                            <input class="form-check-input" type="checkbox" id="darkModeToggle" aria-pressed="false" aria-label="Toggle dark mode">
                             <label class="form-check-label" for="darkModeToggle" style="margin-right: 10px;">Dark Mode</label>
                         </div>
                     </li>
@@ -112,7 +114,7 @@
                     <li class="nav-item">
                         <form action="{% url 'logout' %}" method="post">
                             {% csrf_token %}
-                            <button type="submit" class="nav-link btn btn-link">Logout
+                            <button type="submit" class="nav-link btn btn-link" aria-label="Logout">Logout
                                 <i class="bi bi-box-arrow-right"></i>
                             </button>
                         </form>
@@ -121,6 +123,7 @@
                 </ul>
     </nav>
     <!-- CONTENT -->
+     <main id="main-content" tabindex="-1">
     <h1 class="mb-4">Personal Finance Tracker</h1>
 
     <div class="mb-3">
@@ -151,12 +154,12 @@
     <table class="table table-striped table-hover" id="transactionTable">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Amount</th>
-                <th>Type</th>
-                <th>Category</th>
-                <th>Date</th>
-                <th>Actions</th>
+                <th scope="col">Title</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Type</th>
+                <th scope="col">Category</th>
+                <th scope="col">Date</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -174,12 +177,13 @@
             </tr>
             {% empty %}
             <tr>
-                <td colspan="5" class="text-center">No transactions yet.</td>
+                <td colspan="6" class="text-center">No transactions yet.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <footer class="footer mt-auto py-3 bg-light text-center fixed-bottom">
+    </main>
+    <footer class="footer mt-auto py-3 bg-light text-center fixed-bottom" role="contentinfo">
       <div class="container">
         <span class="text-muted">© 2025 Finance Tracker by <em>Cameron Lewis Steensma</em></span>
       </div>
