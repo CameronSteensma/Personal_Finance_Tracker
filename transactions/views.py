@@ -84,9 +84,15 @@ def delete_transaction(request, pk):
 
 @login_required
 def reports_view(request):
+    #default to bar chart if no chart type is specified
+    chart_type = request.GET.get('chart', 'bar')
     transactions = Transaction.objects.all()
-    generate_monthly_spending_chart(transactions)
-    return render(request, 'transactions/reports.html')
+    chart_path = generate_monthly_spending_chart(transactions, chart_type)
+    context = {
+        "chart_type": chart_type,
+        "chart_path": chart_path
+    }
+    return render(request, 'transactions/reports.html', context)
 
 @staff_member_required
 def admin_view(request):
