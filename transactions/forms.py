@@ -4,7 +4,7 @@ from .models import Transaction
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transaction
-        fields = ['title', 'amount', 'transaction_type', 'category', 'date']
+        fields = ['title', 'amount', 'transaction_type', 'category', 'date', 'is_recurring', 'frequency']
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
             'transaction_type': forms.Select(choices=[('INCOME', 'Income'), ('EXPENSE', 'Expense')]),
