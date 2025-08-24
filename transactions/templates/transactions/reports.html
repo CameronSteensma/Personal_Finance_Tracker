@@ -1,103 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Spending Reports{% endblock %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Spending Reports</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            background: white;
-            padding: 2rem;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .chart-container {
-            text-align: center;
-            margin-top: 2rem;
-        }
-        img {
-            max-width: 100%;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-        }
-        .back-button {
-            display: block;
-            text-align: center;
-            margin-top: 2rem;
-            position: fixed;
-            transform: translateX(-50%);
-            bottom: 20px;
-            left: 50%;
-            padding:10px 20px;
-            border-radius: 8px;
-        }
-        .back-button a {
-            background: #3498db;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        .back-button a:hover {
-            background: #2980b9;
-        }
-
-        .back-button a:focus {
-            outline: 3px solid #2980b9;
-            outline-offset: 2px;
-        }
-    </style>
-    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
-</head>
-<body>
-    <header role="banner">
-        <h2>Finance Tracker</h2>
-    </header>
-    <div class="container">
-        <main>
-        <h1>Monthly Spending by Category</h1>
-        <p style="text-align:center; color: #666;">
+{% block content %}
+<main class="container my-5">
+    <div class="card shadow-sm p-4">
+        <h1 class="text-center mb-3">Monthly Spending by Category</h1>
+        <p class="text-center text-muted mb-4">
             A breakdown of your expenses by category for each month.
         </p>
-        <div class="chart-container">
-            <img src="{% static chart_path %}" alt="{{ chart_type|title}} Chart Showing Monthly Spending by Category" class="img-fluid">
+
+        <div class="text-center mb-4">
+            <img src="{% static chart_path %}" alt="{{ chart_type|title }} Chart Showing Monthly Spending by Category" class="img-fluid border rounded">
         </div>
-        <div class="chart-options text-center">
-            <form method="get">
-                <label for="chartType" class="form-label">Choose chart type:</label>
+
+        <div class="d-flex justify-content-center mb-3">
+            <form method="get" class="d-flex align-items-center gap-2">
+                <label for="chartType" class="form-label mb-0">Choose chart type:</label>
                 <select id="chartType" name="chart" class="form-select d-inline w-auto" aria-label="Chart type">
                     <option value="bar" {% if chart_type|default:"bar" == "bar" %}selected{% endif %}>Bar</option>
                     <option value="line" {% if chart_type == "line" %}selected{% endif %}>Line</option>
                     <option value="pie" {% if chart_type == "pie" %}selected{% endif %}>Pie</option>
                 </select>
-                <button type="submit" class="btn btn-primary ms-2">Update</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
-        <div class="back-button">
-            <a href="/">Back to Home</a>
-        </div>
-        </main>
     </div>
-    <footer role="contentinfo">
-        <p class="text-center text-muted">© 2025 Finance Tracker</p>
-    </footer>
-</body>
-</html>
+</main>
+{% endblock %}
